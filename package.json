@@ -2,6 +2,7 @@
   "name": "foreground-windows",
   "version": "1.0.1",
   "description": "A package to monitor foreground window changes",
+  
   "main": "index-cjs.js",
   "type": "module",
   "scripts": {
@@ -10,7 +11,13 @@
   "exports": { ".": { "import": "./index.js", 
   "require": "./index-cjs.cjs"  
   }},
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "foreground",
+    "foreground-windows",
+    "foreground-window-event",
+    "active-win",
+    "get-windows"
+  ],
+  "author": "srijan67 <srijansinha67@gmail.com>",
   "license": "MIT"
 }
