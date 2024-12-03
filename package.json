@@ -1,6 +1,6 @@
 {
   "name": "foreground-windows",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A package to monitor foreground window changes",
   "main": "index-cjs.js",
   "type": "module",
@@ -12,5 +12,5 @@
   }},
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "MIT"
 }
