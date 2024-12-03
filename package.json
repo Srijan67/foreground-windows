@@ -1,0 +1,16 @@
+{
+  "name": "foreground-windows",
+  "version": "1.0.0",
+  "description": "A package to monitor foreground window changes",
+  "main": "index-cjs.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "exports": { ".": { "import": "./index.js", 
+  "require": "./index-cjs.cjs"  
+  }},
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
