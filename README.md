@@ -3,8 +3,8 @@
 Nodejs package to get active/foreground window. This will generally be useful to all our Electronjs folks.
 
 ## Pros
-This package also gives you event so that you do not need to hit same function again and again in a cronjob to monitor accurate windows at that time.
-Supports for cjs(require) and mjs(import).
+1. This package also gives you event so that you do not need to hit same function again and again in a cronjob to monitor accurate windows at that time.
+2. Supports for cjs(require) and mjs(import).
 
 ## Foreground Event
 Example: 
