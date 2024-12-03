@@ -1,14 +1,18 @@
 {
   "name": "foreground-windows",
-  "version": "1.0.2",
-  "description": "A package to monitor foreground window changes",
-  
+  "version": "1.0.3",
+  "description": "A package to monitor and get details of foreground windows",
   "main": "index-cjs.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "exports": { ".": { "import": "./index.js", 
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Srijan67/foreground-windows.git"
+  },
+  "exports": { 
+  ".": { "import": "./index.js", 
   "require": "./index-cjs.cjs"  
   }},
   "keywords": [
@@ -19,5 +23,9 @@
     "get-windows"
   ],
   "author": "srijan67 <srijansinha67@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Srijan67/foreground-windows/issues"
+  },
+  "homepage": "https://github.com/Srijan67/foreground-windows#readme"
 }
