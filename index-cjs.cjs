@@ -71,6 +71,42 @@ function startListening() {
         child = null; 
     });
 }
+function startDetailListening() { 
+    if (child) { 
+        console.log('Listener is already running.'); 
+        return; 
+    } 
+    console.log('Starting foreground listener...'); 
+    child = spawn(exefile, ['detail-event']); 
+    child.stdout.on('data', (data) => { 
+        const output = data.toString(); 
+        const outputSplit = output.split('\r\n')
+        if(outputSplit.length > 2){
+
+            let processName = outputSplit[2].split("Process Name: ")[1]
+            let processId = outputSplit[1].split('Process ID: ')[1]
+            let winTitle = outputSplit[0].split('Foreground Window Title: ')[1]
+            let obj = {
+                processId: processId,
+                processName: processName,
+                windowTitle: winTitle
+            }
+            
+            foregroundListener.emit('change', obj); 
+        }else {
+            foregroundListener.emit('change', output); 
+
+        }
+    }); 
+    child.stderr.on('data', (data) => { 
+        const output = data.toString(); 
+        console.error(`stderr: ${output}`); 
+    }); 
+    child.on('exit', (code) => { 
+        console.log(`Foreground listener exited with code ${code}`); 
+        child = null; 
+    });
+}
 function stopListening() { 
     if (child) { 
         child.kill(); 
@@ -81,6 +117,6 @@ function stopListening() {
     }
 }
 const foreground = {
-    startListening, stopListening, on: (event, listener) => foregroundListener.on(event, listener), getForegroundWindow
+    startListening, startDetailListening, stopListening, on: (event, listener) => foregroundListener.on(event, listener), getForegroundWindow
 }
 module.exports = foreground;

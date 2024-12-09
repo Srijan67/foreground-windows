@@ -36,9 +36,45 @@ void CALLBACK EventProc(HWINEVENTHOOK hook, DWORD event, HWND hwnd, LONG idObjec
 
     }
 }
+void CALLBACK EventProcDetail(HWINEVENTHOOK hook, DWORD event, HWND hwnd, LONG idObject, LONG idChild, DWORD dwEventThread, DWORD dwmsEventTime) {
+    if ((event == EVENT_SYSTEM_FOREGROUND && idObject == OBJID_WINDOW) ||
+        (event == EVENT_OBJECT_NAMECHANGE && idObject == OBJID_WINDOW)) {
+        char details[512] = { 0 };
+        GetForegroundWindowDetails(details, sizeof(details));
+    }
+}
 
 int main(int argc, char* argv[]) {
- if (argc > 1 && strcmp(argv[1], "event") == 0) {
+ if (argc > 1 && strcmp(argv[1], "detail-event") == 0) {
+      HWINEVENTHOOK hookForeground = SetWinEventHook(
+      EVENT_SYSTEM_FOREGROUND, EVENT_SYSTEM_FOREGROUND,
+      NULL, EventProcDetail, 0, 0, WINEVENT_OUTOFCONTEXT | WINEVENT_SKIPOWNPROCESS
+  );
+
+  HWINEVENTHOOK hookNameChange = SetWinEventHook(
+      EVENT_OBJECT_NAMECHANGE, EVENT_OBJECT_NAMECHANGE,
+      NULL, EventProcDetail, 0, 0, WINEVENT_OUTOFCONTEXT | WINEVENT_SKIPOWNPROCESS
+  );
+
+  if (hookForeground == NULL || hookNameChange == NULL) {
+      printf("Failed to set event hook(s).\n");
+      return 1;
+  }
+
+  printf("Monitoring foreground window and title changes... Press Ctrl+C to exit.\n");
+  fflush(stdout);
+
+  MSG msg;
+  while (GetMessage(&msg, NULL, 0, 0)) {
+      TranslateMessage(&msg);
+      DispatchMessage(&msg);
+  }
+
+  UnhookWinEvent(hookForeground);
+  UnhookWinEvent(hookNameChange);
+  return 0;
+ }
+ else if (argc > 1 && strcmp(argv[1], "event") == 0) {
     HWINEVENTHOOK hook = SetWinEventHook(
         EVENT_SYSTEM_FOREGROUND, EVENT_SYSTEM_FOREGROUND,
         NULL, EventProc, 0, 0, WINEVENT_OUTOFCONTEXT
