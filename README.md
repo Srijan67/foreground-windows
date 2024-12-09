@@ -17,7 +17,7 @@ Example:
     import foreground from 'foreground-windows';
     foreground.startListening(); // normal process listening
 
-    foreground.startDetailListening();//to listen to changes in windows title
+    // foreground.startDetailListening(); //  to listen to changes in windows title
     foreground.on('change', (data) => {
         console.log(data)
     })

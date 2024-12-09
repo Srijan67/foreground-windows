@@ -121,9 +121,5 @@ function stopListening() {
 const foreground = {
     startDetailListening, startListening, stopListening, on: (event, listener) => foregroundListener.on(event, listener), getForegroundWindow
 }
-startDetailListening()
-foregroundListener.on("change", (data) => {
-    console.log('event data: ', data)
-})
 export default foreground;
 export { foregroundListener, startListening, startDetailListening, stopListening, getForegroundWindow };
