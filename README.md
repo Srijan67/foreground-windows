@@ -1,6 +1,12 @@
-# Foreground Windows (A great alternative to find active-windows using nodejs)
+# Foreground Windows (A great way to find active-windows using nodejs)
 
-Nodejs package to get active/foreground window. This will generally be useful to all our Electronjs folks.
+Nodejs package to get active/foreground window. This will generally be useful to all our folks using Electronjs or similar tech-stack.
+
+## Installation
+
+Just hit below command to install this beautiful package in your node project.
+
+`npm i foreground-windows`
 
 ## Pros
 
