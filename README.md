@@ -9,15 +9,15 @@ Nodejs package to get active/foreground window. This will generally be useful to
 
 ## Foreground Event
 
-To hook and listen to event, there are two functions startListening() and startDetailListening() functions. From the name its pretty clear that the former one is used for listening the app process changes while the latter is used to listen the tab changes too along with app process changes which means now you can listen to changes in windows title as well so that chrome.exe tab switching doesn't get missed out.
+To hook and listen to event, there are two functions `startListening()` and `startDetailListening()` functions. The former one is used for listening the app process changes only while the latter is used to listen the tab changes too along with app process changes which means now you can listen to changes in windows title as well so that chrome.exe tab switching doesn't get missed out.
 
 Example:
 
     // const foreground = require('foreground-windows');
     import foreground from 'foreground-windows';
-    foreground.startListening(); // normal process listening
+    foreground.startListening(); // to listen to changes in app processes only
 
-    // foreground.startDetailListening(); //  to listen to changes in windows title
+    // foreground.startDetailListening(); //  to listen to changes in windows title and app processes
     foreground.on('change', (data) => {
         console.log(data)
     })
